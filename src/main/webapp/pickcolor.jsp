@@ -11,7 +11,7 @@
     <title>Pick A Color</title>
 </head>
 <body>
-<form action="/viewcolor.jsp" method="post">
+<form action="/viewcolor" method="post">
   <label for="pickedColor">Pick a Color for your background : </label>
   <input type="text" name="pickedColor" id="pickedColor"/>
   <input type="submit">

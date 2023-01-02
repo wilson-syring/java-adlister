@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name="/PickColorServlet", urlPatterns = "/viewcolor.jsp")
+@WebServlet(name="PickColorServlet", urlPatterns = "/viewcolor")
 public class PickColorServlet extends HttpServlet {
 
     @Override
@@ -18,7 +18,7 @@ public class PickColorServlet extends HttpServlet {
         response.setContentType("text/html");
         String pickedColor = request.getParameter("pickedColor");
         request.getSession().setAttribute("pickedColor", pickedColor);
-        request.getRequestDispatcher("viewcolor.jsp").forward(request, response);
+        request.getRequestDispatcher("/viewcolor.jsp").forward(request, response);
 
     }
 }

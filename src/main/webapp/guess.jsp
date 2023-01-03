@@ -16,7 +16,7 @@
 <body>
 <form action="/guess" method="post">
     <label for="guess">Pick a number between 1 and 3: </label>
-    <input type="number" id="guess" name="guess">
+    <input type="text" id="guess" name="guess">
     <input type="submit" value="Try your Luck!">
 </form>
 </body>

@@ -7,19 +7,31 @@ import java.io.IOException;
 
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/login.jsp").forward(request, response);
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getSession().getAttribute("isLoggedin") != null) {
+            if ((boolean) req.getSession().getAttribute("isLoggedin")) {
+                resp.sendRedirect("/profile");
+            } else {
+                req.getRequestDispatcher("/login.jsp").forward(req, resp);
+            }
+        } else {
+            req.getRequestDispatcher("/login.jsp").forward(req, resp);
+        }
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        boolean validAttempt = username.equals("admin") && password.equals("password");
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
+        boolean validAttempt = username.equals("user") && password.equals("password");
 
         if (validAttempt) {
-            response.sendRedirect("/profile");
+            req.getSession().setAttribute("isLoggedIn", true);
+            req.getSession().getAttribute("user");
+            resp.sendRedirect("/profile");
         } else {
-            response.sendRedirect("/login");
+            resp.sendRedirect("/login");
         }
     }
 }

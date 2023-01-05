@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -10,6 +11,7 @@
 
     <div class="container">
         <h1>Viewing your profile.</h1>
+        <c:out value="<h1>Welcome to the Grid, ${sessionScope.user}<h1>"/>
     </div>
 
 </body>

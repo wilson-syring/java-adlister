@@ -7,7 +7,15 @@ import java.io.IOException;
 
 @WebServlet(name = "ViewProfileServlet", urlPatterns = "/profile")
 public class ViewProfileServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/profile.jsp").forward(request, response);
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if(req.getSession().getAttribute("isLoggedIn")==null){
+            resp.sendRedirect("/login");
+        } else if((boolean) req.getSession().getAttribute("isLoggedIn")){
+            req.getRequestDispatcher("/profile.jsp").forward(req,resp);
+        } else{
+            resp.sendRedirect("/login");
+        }
+
     }
 }

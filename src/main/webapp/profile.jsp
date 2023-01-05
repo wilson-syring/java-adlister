@@ -11,7 +11,7 @@
 
     <div class="container">
         <h1>Viewing your profile.</h1>
-        <c:out value="<h1>Welcome to the Grid, ${sessionScope.user}<h1>"/>
+        <h1>Welcome to the Grid, <c:out value="${sessionScope.username}"/></h1>
     </div>
 
 </body>
